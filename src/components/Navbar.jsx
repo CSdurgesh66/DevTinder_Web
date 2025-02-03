@@ -31,19 +31,19 @@ const Navbar = () => {
   return (
     <div className="navbar bg-neutral flex flex-row justify-center ">
       <div className="flex-1  w-1/2 justify-center">
-        <Link to="/" className="btn btn-ghost text-xl text-white ">DevTinder</Link>
+        <Link to="/feed" className="btn btn-ghost text-xl text-white ">DevTinder</Link>
       </div>
 
       <div className='w-1/2 justify-center '>
         {user && (
           <div className=" gap-2 flex  w-1/2 justify-center flex-row">
-            <div className='text-white text-[16px] font-mono mt-3 items-center'>Welcome, {user.user.firstName}</div>
+            <div className='text-white text-[16px] font-mono mt-3 items-center'>Welcome, {user.data.firstName}</div>
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={user.user.photoUrl} />
+                    src={user.data.photoUrl} />
                 </div>
 
 

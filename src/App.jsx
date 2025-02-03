@@ -10,6 +10,8 @@ import { addUser } from "./utils/userSlice"
 import { useEffect } from "react"
 import Connections from "./components/Connections"
 import Requests from "./components/Requests"
+import Home from "./components/Home"
+import PageNotFound from "./components/pageNotFound"
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
   const navigate = useNavigate();
 
   const UserData = useSelector((store) => store.user);
+  console.log("data in app jsx file",UserData);
 
   const fetchUser = async () => {
     try {
@@ -49,13 +52,14 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path="/" element={<div>base page</div>} />
+          <Route path="/" element={<Home/>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/connection" element={<Connections />} />
           <Route path="/request" element={<Requests />} />
+          <Route path="*" element={<PageNotFound />} /> 
         </Routes>
 
 

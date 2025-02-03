@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addRequest, removeRequest } from '../Slices/RequestSlice';
 import { IoMdClose } from "react-icons/io";
 import { FaCheck } from "react-icons/fa6";
+import  './Style.css';
 
 const Requests = () => {
 
@@ -46,7 +47,13 @@ const Requests = () => {
         allRequest()
     },[]);
 
-    if(!requestData) return <p>loading</p>
+    if(!requestData) return (
+        <div className='flex justify-center items-center h-screen relative'>
+          <div class="spinner "></div>
+          <p className='absolute  text-xl'>loading</p>
+    
+        </div>
+    )
 
     if(requestData.length===0) return <h1 className='flex justify-center font-semibold mt-10 text-2xl'>No Request Found</h1>
 

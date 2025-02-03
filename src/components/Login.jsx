@@ -40,42 +40,6 @@ const Login = () => {
     return (
         <div>
 
-            {/* <div className='flex  justify-center mt-20 scale-110'>
-
-                <div className="card bg-base-300 w-96 shadow-xl ">
-                    <div className="card-body">
-
-                        <h2 className="card-title text-2xl justify-center">Login</h2>
-
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text text-lg">Email{email}</span>
-                            </div>
-                            <input type="text" placeholder="Enter your email" className="input input-bordered w-full max-w-xs" value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-
-                            <div className="label mt-2">
-                                <span className="label-text text-lg">Passwod</span>
-                            </div>
-                            <input type="text" placeholder="Enter your password" className="input input-bordered w-full max-w-xs" value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </label>
-
-                        <div className="card-actions justify-center mt-4">
-                            <button className="btn btn-primary" onClick={handleLogin}>login</button>
-                        </div>
-                        <Link to="/signup">
-                            <div className='flex justify-center text-lg'>
-                                New User? Sign up Here
-                            </div>
-                        </Link>
-                    </div>
-                </div>
-
-            </div> */}
-
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
@@ -116,6 +80,54 @@ const Login = () => {
                         </Link>
                     </div>
                 </div>
+            </div>
+
+            <div>
+            <div>
+                <footer className="footer bg-neutral text-neutral-content grid-rows-2 p-10">
+                    <nav>
+                        <h6 className="footer-title">Services</h6>
+                        <a className="link link-hover">Branding</a>
+                        <a className="link link-hover">Design</a>
+                        <a className="link link-hover">Marketing</a>
+                        <a className="link link-hover">Advertisement</a>
+                    </nav>
+                    <nav>
+                        <h6 className="footer-title">Company</h6>
+                        <a className="link link-hover">About us</a>
+                        <a className="link link-hover">Contact</a>
+                        <a className="link link-hover">Jobs</a>
+                        <a className="link link-hover">Press kit</a>
+                    </nav>
+                    <nav>
+                        <h6 className="footer-title">Legal</h6>
+                        <a className="link link-hover">Terms of use</a>
+                        <a className="link link-hover">Privacy policy</a>
+                        <a className="link link-hover">Cookie policy</a>
+                    </nav>
+                    <nav>
+                        <h6 className="footer-title">Social</h6>
+                        <a className="link link-hover">Twitter</a>
+                        <a className="link link-hover">Instagram</a>
+                        <a className="link link-hover">Facebook</a>
+                        <a className="link link-hover">GitHub</a>
+                    </nav>
+                    <nav>
+                        <h6 className="footer-title">Explore</h6>
+                        <a className="link link-hover">Features</a>
+                        <a className="link link-hover">Enterprise</a>
+                        <a className="link link-hover">Security</a>
+                        <a className="link link-hover">Pricing</a>
+                    </nav>
+                    <nav>
+                        <h6 className="footer-title">Apps</h6>
+                        <a className="link link-hover">Mac</a>
+                        <a className="link link-hover">Windows</a>
+                        <a className="link link-hover">iPhone</a>
+                        <a className="link link-hover">Android</a>
+                    </nav>
+                </footer>
+            </div>
             </div>
         </div>
 

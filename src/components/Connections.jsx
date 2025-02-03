@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addConnections } from '../Slices/ConnectionSlice';
+import  './Style.css';
 
 const Connections = () => {
 
@@ -28,7 +29,16 @@ const Connections = () => {
     allConnections();
   }, [])
 
-  if(!connectionData) return <p>laoding</p>;
+  if(!connectionData) return (
+    <div className='flex justify-center items-center h-screen relative'>
+      <div class="spinner "></div>
+      <p className='absolute  text-xl'>loading</p>
+
+    </div>
+  )
+
+  if(connectionData.length===0) return <h1 className='flex justify-center font-semibold mt-10 text-2xl'>No connection here</h1>
+
 
   return (
     <div>
@@ -50,7 +60,7 @@ const Connections = () => {
                <p>{about}</p>
                <p>{skills.map(data =>{
                 return (
-                  <span  key={data}>{data} </span>
+                  <span key={data}>{data} </span>
                 )
                })}</p>
               </div>
