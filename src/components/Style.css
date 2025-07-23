@@ -6,6 +6,10 @@
     box-shadow: 28px 0px 0 0 rgba(71,75,255,0.2), 22.7px 16.5px 0 0 rgba(71,75,255,0.4), 8.68px 26.6px 0 0 rgba(71,75,255,0.6), -8.68px 26.6px 0 0 rgba(71,75,255,0.8), -22.7px 16.5px 0 0 #474bff;
     animation: spinner-b87k6z 1s infinite linear;
  }
+
+ .signup{
+   background-image: linear-gradient(to bottom, #fcfbec, #fdfbea, #fdfce8, #fefce6, #fefde4, #fefcdf, #fdfcda, #fdfbd5, #fbf9cc, #faf7c2, #f8f5b9, #f6f3af);
+ }
  
  @keyframes spinner-b87k6z {
     to {

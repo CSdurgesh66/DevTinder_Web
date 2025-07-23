@@ -36,14 +36,7 @@ const Feed = () => {
   useEffect(() =>{
     getFeed();
   },[]);
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     navigate("/login"); // Redirect to login if no token
-  //   } else {
-  //     getFeed();
-  //   }
-  // }, []);
+ 
 
   if(!feed )return (
     <div className='flex justify-center items-center h-screen relative'>

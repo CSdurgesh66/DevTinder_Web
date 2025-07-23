@@ -62,7 +62,7 @@ const Requests = () => {
 <h1 className='flex justify-center text-4xl font-semibold mt-8 mb-5'>Requests</h1>
 {requestData.map(data =>{
             return(
-            <div className=" mx-5 bg-base-300  place-items-center my-1 flex flex-row gap-3 h-32 w-[40%] mx-auto">
+            <div className=" bg-base-300  place-items-center my-1 flex flex-row gap-3 h-32 w-[40%] mx-auto">
                 <div className='w-[60%] flex flex-row items-center'>
               <div className='ml-10'>
                <img className='flex rounded-full mx-10' src={data.fromUserId.photoUrl} height='80px' width="80px" />

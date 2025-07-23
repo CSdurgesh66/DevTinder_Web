@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addConnections } from '../Slices/ConnectionSlice';
 import  './Style.css';
+import { Link } from 'react-router-dom';
+import { LuMessageCircleMore } from "react-icons/lu";
 
 const Connections = () => {
 
@@ -49,7 +51,7 @@ const Connections = () => {
         {connectionData.map(data=> {
           const {_id, photoUrl, firstName, lastName,age,about,skills} = data;
           return (
-            <div key={_id} className=" mx-5 bg-base-300  place-items-center my-1 flex flex-row gap-3 h-32 w-[60%] mx-auto">
+            <div key={_id} className="  bg-base-300  place-items-center my-1 flex flex-row gap-3 h-32 w-[60%] mx-auto">
               <div className='ml-10'>
                <img className='flex rounded-full mx-10' src={photoUrl} height='80px' width="80px" />
               </div>
@@ -64,6 +66,13 @@ const Connections = () => {
                 )
                })}</p>
               </div>
+
+              <Link to={'/chat/'+_id}>
+              <button className='btn btn-primary'>Message
+              <LuMessageCircleMore/>
+              </button>
+              </Link>
+
             </div>
           )
         })}

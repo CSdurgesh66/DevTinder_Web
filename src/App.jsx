@@ -12,6 +12,7 @@ import Connections from "./components/Connections"
 import Requests from "./components/Requests"
 import Home from "./components/Home"
 import PageNotFound from "./components/pageNotFound"
+import Chat from "./components/Chat"
 
 function App() {
 
@@ -37,9 +38,10 @@ function App() {
       console.log(error);
     }
   }
+  
 
   useEffect(() => {
-    if(!UserData) {
+    if(!UserData || UserData.length==0) {
       fetchUser();
     }
 
@@ -59,6 +61,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/connection" element={<Connections />} />
           <Route path="/request" element={<Requests />} />
+          <Route path="/chat/:targetUserId" element={<Chat />} />
           <Route path="*" element={<PageNotFound />} /> 
         </Routes>
 
