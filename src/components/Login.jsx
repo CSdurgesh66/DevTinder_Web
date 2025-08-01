@@ -28,19 +28,16 @@ const LoginForm = () => {
 
     const validateForm = () => {
         const newErrors = {};
-
         if (!formData.email) {
             newErrors.email = 'Email is required';
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
             newErrors.email = 'Please enter a valid email';
         }
-
         if (!formData.password) {
             newErrors.password = 'Password is required';
         } else if (formData.password.length < 6) {
             newErrors.password = 'Password must be at least 6 characters';
         }
-
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -74,7 +71,7 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-50 to-indigo-100 flex items-center justify-center px-4 py-8 relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-50 to-indigo-100 flex items-center justify-center px-4 py-8 relative overflow-hidden mt-16">
             {/* Background decorative elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-pink-300 to-purple-400 rounded-full opacity-20 blur-3xl"></div>

@@ -1,53 +1,23 @@
 import React from 'react'
+import {Code,Heart} from 'lucide-react'
 
 const Footer = () => {
   return (
     <div>
-      <div>
-                <footer className="footer bg-neutral text-neutral-content grid-rows-2 p-10">
-                    <nav>
-                        <h6 className="footer-title">Services</h6>
-                        <a className="link link-hover">Branding</a>
-                        <a className="link link-hover">Design</a>
-                        <a className="link link-hover">Marketing</a>
-                        <a className="link link-hover">Advertisement</a>
-                    </nav>
-                    <nav>
-                        <h6 className="footer-title">Company</h6>
-                        <a className="link link-hover">About us</a>
-                        <a className="link link-hover">Contact</a>
-                        <a className="link link-hover">Jobs</a>
-                        <a className="link link-hover">Press kit</a>
-                    </nav>
-                    <nav>
-                        <h6 className="footer-title">Legal</h6>
-                        <a className="link link-hover">Terms of use</a>
-                        <a className="link link-hover">Privacy policy</a>
-                        <a className="link link-hover">Cookie policy</a>
-                    </nav>
-                    <nav>
-                        <h6 className="footer-title">Social</h6>
-                        <a className="link link-hover">Twitter</a>
-                        <a className="link link-hover">Instagram</a>
-                        <a className="link link-hover">Facebook</a>
-                        <a className="link link-hover">GitHub</a>
-                    </nav>
-                    <nav>
-                        <h6 className="footer-title">Explore</h6>
-                        <a className="link link-hover">Features</a>
-                        <a className="link link-hover">Enterprise</a>
-                        <a className="link link-hover">Security</a>
-                        <a className="link link-hover">Pricing</a>
-                    </nav>
-                    <nav>
-                        <h6 className="footer-title">Apps</h6>
-                        <a className="link link-hover">Mac</a>
-                        <a className="link link-hover">Windows</a>
-                        <a className="link link-hover">iPhone</a>
-                        <a className="link link-hover">Android</a>
-                    </nav>
-                </footer>
-            </div>
+      <footer className='bg-gray-900 text-white py-12'>
+                <div className=' max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+                    <div className='flex flex-col md:flex-row justify-between items-center'>
+                        <div className='flex items-center gap-2 mb-4 md:mb-0'>
+                            <Code className='w-8 h-8 text-purple-400' />
+                            <span className='text-2xl font-bold'>DevTinder</span>
+                            <Heart className='w-6 h-6 text-pink-400 fill-current' />
+                        </div>
+                        <div className='text-gray-400'>
+                            © 2025 DevTinder. Made with ❤️ for developers.
+                        </div>
+                    </div>
+                </div>
+            </footer>
     </div>
   ) 
 }

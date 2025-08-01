@@ -10,7 +10,8 @@ import { addUser } from "./utils/userSlice"
 import { useEffect } from "react"
 import Connections from "./components/Connections"
 import Requests from "./components/Requests"
-import Home from "./components/Home"
+
+import HomePage from "./components/HomePage"
 import PageNotFound from "./components/pageNotFound"
 import Chat from "./components/Chat"
 
@@ -33,7 +34,7 @@ function App() {
 
     } catch (error) {
       if (error.status === 401) {
-        navigate("/login");
+        navigate("/");
       }
       console.log(error);
     }
@@ -54,7 +55,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<HomePage/>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/feed" element={<Feed />} />
@@ -64,7 +65,6 @@ function App() {
           <Route path="/chat/:targetUserId" element={<Chat />} />
           <Route path="*" element={<PageNotFound />} /> 
         </Routes>
-
 
 
       </div>
