@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { removeUser } from '../utils/userSlice';
+import { addFeed, removeFeed } from '../utils/feedSlice';
 import { toast } from 'react-toastify';
 import { Code, Heart } from 'lucide-react'
 import { BASE_URL } from '../utils/constants'
@@ -21,7 +22,10 @@ const Navbar = () => {
 
       toast.success("Logout Successfully");
       dispatch(removeUser());
-      navigate("/login");
+      dispatch(removeFeed());
+      dispatch(addFeed(null))
+      
+      window.location.replace("/login");
 
     } catch (err) {
       console.log(err);
