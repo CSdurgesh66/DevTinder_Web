@@ -4,6 +4,7 @@ import { Mail, Lock, Eye, EyeOff, User, Heart, Code, Star, Users } from 'lucide-
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { BASE_URL } from '../utils/constants'
 
 const SignupForm = () => {
 
@@ -69,9 +70,8 @@ const SignupForm = () => {
 
             if (validateForm()) {
 
-                console.log("this is form data : ", formData);
 
-                const res = await axios.post("http://localhost:3000/signup",
+                const res = await axios.post(BASE_URL + "/signup",
                     {
                         firstName: formData.firstName,
                         lastName: formData.lastName,
@@ -81,7 +81,6 @@ const SignupForm = () => {
                     { withCredentials: true },
                 );
 
-                console.log("sign up data is here ", res.data);
                 dispatch(addUser(res.data));
                 return navigate('/profile');
             }
@@ -93,8 +92,8 @@ const SignupForm = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center px-4 py-8 relative overflow-hidden mt-16">
-            
-             {/* Background decorative elements  */}
+
+            {/* Background decorative elements  */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-indigo-300 to-purple-400 rounded-full opacity-20 blur-3xl"></div>
                 <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-tr from-pink-300 to-red-400 rounded-full opacity-20 blur-3xl"></div>
@@ -102,7 +101,7 @@ const SignupForm = () => {
             </div>
 
             <div className="w-full max-w-md relative z-10">
-               
+
                 {/* Hero Section */}
                 <div className="text-center mb-8">
                     <div className="relative inline-block mb-4">

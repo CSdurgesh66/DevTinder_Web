@@ -4,85 +4,107 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addRequest, removeRequest } from '../Slices/RequestSlice';
 import { IoMdClose } from "react-icons/io";
 import { FaCheck } from "react-icons/fa6";
-import  './Style.css';
+import './Style.css';
+import { BASE_URL } from '../utils/constants'
 
 const Requests = () => {
 
-    const dispatch = useDispatch();
-    const requestData = useSelector((store) => store.request);
+  const dispatch = useDispatch();
+  const requestData = useSelector((store) => store.request);
 
-    const reviewRequest = async(status,_id) =>{
-        try{
+  const reviewRequest = async (status, _id) => {
+    try {
 
-            const res = await axios.post("http://localhost:3000/request/review/"+status+"/"+_id,
-                {},
-                {withCredentials:true},
-            );
-            dispatch(removeRequest(_id));
+      const res = await axios.post(BASE_URL + "/request/review/" + status + "/" + _id,
+        {},
+        { withCredentials: true },
+      );
+      dispatch(removeRequest(_id));
 
-        }catch(error){
-            console.log(error);
-        }
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    const allRequest = async() =>{
-        try{
+  const allRequest = async () => {
+    try {
 
-            const res = await axios.get("http://localhost:3000/user/requests/received",
-                {withCredentials:true},
-            );
-            // connectionRequests
-            dispatch(addRequest(res.data.connectionRequests));
-            console.log(res.data.connectionRequests)
+      const res = await axios.get(BASE_URL + "/user/requests/received",
+        { withCredentials: true },
+      );
+      dispatch(addRequest(res.data.connectionRequests));
 
-
-        }catch(error){
-            console.log(error)
-        }
+    } catch (error) {
+      console.log(error)
     }
+  }
 
- 
+  useEffect(() => {
+    allRequest()
+  }, []);
 
-    useEffect(() =>{
-        allRequest()
-    },[]);
+  if (!requestData) return (
+    <div className='flex justify-center items-center h-screen relative'>
+      <div class="spinner "></div>
+      <p className='absolute  text-xl'>loading</p>
 
-    if(!requestData) return (
-        <div className='flex justify-center items-center h-screen relative'>
-          <div class="spinner "></div>
-          <p className='absolute  text-xl'>loading</p>
-    
-        </div>
-    )
+    </div>
+  )
 
-    if(requestData.length===0) return <h1 className='flex justify-center font-semibold mt-10 text-2xl'>No Request Found</h1>
+  if (requestData.length === 0) return <h1 className='flex items-center justify-center font-semibold mt-10 text-2xl mt-32'>No Request Found</h1>
 
   return (
-    <div>
-<h1 className='flex justify-center text-4xl font-semibold mt-8 mb-5'>Requests</h1>
-{requestData.map(data =>{
-            return(
-            <div className=" bg-base-300  place-items-center my-1 flex flex-row gap-3 h-32 w-[40%] mx-auto">
-                <div className='w-[60%] flex flex-row items-center'>
-              <div className='ml-10'>
-               <img className='flex rounded-full mx-10' src={data.fromUserId.photoUrl} height='80px' width="80px" />
-              </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 mt-16">
+      <div className="max-w-2xl mx-auto px-4">
+        <h1 className="text-4xl font-bold text-center text-slate-800 mb-8">Connection Requests</h1>
 
-              <div className='flex flex-col text-2xl'>
-                <h1 className='font-semibold'>{data.fromUserId.firstName} {data.fromUserId.lastName}</h1>
-              </div>
+        <div className="space-y-4">
+          {requestData.map((data) => {
+            return (
+              <div
+                key={data._id}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-slate-200"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="relative">
+                      <img
+                        className="w-16 h-16 rounded-full object-cover ring-4 ring-pink-100"
+                        src={data.fromUserId.photoUrl || "/placeholder.svg"}
+                        alt={`${data.fromUserId.firstName} ${data.fromUserId.lastName}`}
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
 
-              </div>
+                    <div className="flex flex-col">
+                      <h2 className="text-xl font-bold text-slate-800">
+                        {data.fromUserId.firstName} {data.fromUserId.lastName}
+                      </h2>
+                      <p className="text-slate-500 text-sm">Wants to connect with you</p>
+                    </div>
+                  </div>
 
-              <div className='flex flex-row  gap-10 ml-14 '>
-              <button className='text-4xl' onClick={(e) => reviewRequest("rejected",data.fromUserId._id)}>< IoMdClose /></button>
-             <button className='text-4xl'onClick={(e) => reviewRequest("accepted",data.fromUserId._id)}> <FaCheck /></button>
+                  <div className="flex space-x-3">
+                    <button
+                      className="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg hover:shadow-red-200"
+                      onClick={(e) => reviewRequest("rejected", data._id)}
+                    >
+                      <IoMdClose className="text-xl" />
+                    </button>
+                    <button
+                      className="w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg hover:shadow-green-200"
+                      onClick={(e) => reviewRequest("accepted", data._id)}
+                    >
+                      <FaCheck className="text-lg" />
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
             )
-        })}
+          })}
+        </div>
+      </div>
     </div>
   )
 }
-
 export default Requests

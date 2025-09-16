@@ -10,10 +10,12 @@ import { addUser } from "./utils/userSlice"
 import { useEffect } from "react"
 import Connections from "./components/Connections"
 import Requests from "./components/Requests"
+import { Loader } from 'lucide-react';
 
 import HomePage from "./components/HomePage"
 import PageNotFound from "./components/pageNotFound"
 import Chat from "./components/Chat"
+import { BASE_URL } from "./utils/constants"
 
 function App() {
 
@@ -21,32 +23,26 @@ function App() {
   const navigate = useNavigate();
 
   const UserData = useSelector((store) => store.user);
-  console.log("data in app jsx file",UserData);
 
-  const fetchUser = async () => {
-    try {
-      const res = await axios.get("http://localhost:3000/profile/view", {
-        withCredentials: true,
-      }
-      );
-
-      dispatch(addUser(res.data));
-
-    } catch (error) {
-      if (error.status === 401) {
-        navigate("/");
-      }
-      console.log(error);
-    }
-  }
-  
 
   useEffect(() => {
-    if(!UserData || UserData.length==0) {
-      fetchUser();
-    }
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get(BASE_URL + "/profile/view", {
+          withCredentials: true,
+        }
+        );
+        dispatch(addUser(res?.data?.data));
 
-  },[]);
+      } catch (error) {
+        if (error.status === 401) {
+          navigate("/");
+        }
+        console.log(error);
+      }
+    }
+    fetchUser();
+  }, [dispatch]);
 
   return (
     <>
@@ -55,7 +51,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path="/" element={<HomePage/>} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/feed" element={<Feed />} />
@@ -63,7 +59,7 @@ function App() {
           <Route path="/connection" element={<Connections />} />
           <Route path="/request" element={<Requests />} />
           <Route path="/chat/:targetUserId" element={<Chat />} />
-          <Route path="*" element={<PageNotFound />} /> 
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
 
 

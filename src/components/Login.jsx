@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { addUser } from '../utils/userSlice';
 import { toast } from 'react-toastify';
+import { BASE_URL } from '../utils/constants'
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -49,14 +50,14 @@ const LoginForm = () => {
 
             if (validateForm()) {
 
-                const res = await axios.post(`http://localhost:3000/login`, {
+                const res = await axios.post(BASE_URL + `/login`, {
                     email: formData.email,
                     password: formData.password,
                 },
                     { withCredentials: true }
                 );
                 toast.success("Login successfully");
-                dispatch(addUser(res.data));
+                dispatch(addUser(res.data?.data));
                 return navigate("/feed");
             }
 
@@ -65,9 +66,6 @@ const LoginForm = () => {
             toast.error("Invalid Credentials");
             console.error(error);
         }
-        // if (validateForm()) {
-        //   console.log('Login attempt:', formData);
-        // }
     };
 
     return (

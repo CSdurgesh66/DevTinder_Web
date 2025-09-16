@@ -75,7 +75,7 @@ const HomePage = () => {
         <div className='min-h-screen bg-white'>
 
             {/* Navigation */}
-            
+
 
             {/* Hero Section  */}
             <section className='pt-24 pb-16 bg-gradient-to-br from-purple-50 via-pink-50
@@ -317,8 +317,8 @@ const HomePage = () => {
             </section>
 
             {/* footer */}
-            <Footer/>
-           
+            <Footer />
+
 
         </div>
     )

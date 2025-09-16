@@ -13,7 +13,7 @@ const Chat = () => {
     const userData = useSelector((store) => store.user);
     const userId = userData?.data?._id;
     const firstName = userData?.data?.firstName;
-    console.log("user ka data h chat", userData)
+    
 
     useEffect(() => {
         if (!userId) {
@@ -107,7 +107,6 @@ const Chat = () => {
                     )
                 })}
 
-
             </div>
 
             <div className='flex flex-row  absolute bottom-5'>
@@ -121,10 +120,6 @@ const Chat = () => {
                     Send
                 </button>
             </div>
-
-
-
-
         </div>
     )
 }

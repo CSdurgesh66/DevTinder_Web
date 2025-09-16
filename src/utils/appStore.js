@@ -6,10 +6,10 @@ import requestReducer from '../Slices/RequestSlice';
 
 const appStore = configureStore({
     reducer: {
-     user:userReducer,
-     feed:feedReducer,
-     connection:connectioReducer,
-     request:requestReducer,
+        user: userReducer,
+        feed: feedReducer,
+        connection: connectioReducer,
+        request: requestReducer,
     }
 })
 

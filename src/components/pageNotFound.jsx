@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 
 const pageNotFound = () => {
 
-   
   return (
     <div className='mt-10 w-[80%]'>
       <section className="relative z-10 bg-primary py-[120px]">

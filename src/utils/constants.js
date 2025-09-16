@@ -1,11 +1,1 @@
-
-// import React from 'react'
-
-// const constants = () => {
-//   return (
-//     <div></div>
-//   )
-// }
-
-// export default constants
-
+export const BASE_URL = "http://localhost:3000";
