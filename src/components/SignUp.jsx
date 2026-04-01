@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { BASE_URL } from '../utils/constants'
+import { toast } from 'react-toastify';
 
 const SignupForm = () => {
 
@@ -86,7 +87,9 @@ const SignupForm = () => {
             }
 
         } catch (error) {
-            console.log(error);
+            const error_msg = error.response.data.message;
+            console.log(error.response.data);
+            toast.error(error_msg);
         }
     };
 

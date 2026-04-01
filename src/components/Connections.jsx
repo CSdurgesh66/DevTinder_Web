@@ -5,7 +5,7 @@ import { addConnections } from '../Slices/ConnectionSlice';
 import './Style.css';
 import { Link } from 'react-router-dom';
 import { LuMessageCircleMore } from "react-icons/lu";
-import { BASE_URL } from '../utils/constants'
+import { BASE_URL } from '../utils/constants';
 
 const Connections = () => {
 
@@ -32,9 +32,8 @@ const Connections = () => {
 
   if (!connectionData) return (
     <div className='flex justify-center items-center h-screen relative'>
-      <div class="spinner "></div>
+      <div className="spinner "></div>
       <p className='absolute  text-xl'>loading</p>
-
     </div>
   )
 

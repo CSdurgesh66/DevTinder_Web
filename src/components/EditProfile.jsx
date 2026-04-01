@@ -43,9 +43,6 @@ const EditProfile = ({ data }) => {
       console.log(error);
     }
   }
-//  useEffect(() =>{
-
-//  },[])
 
   return (
     <>

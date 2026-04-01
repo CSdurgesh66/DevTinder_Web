@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux';
 import { removeRequest } from '../Slices/RequestSlice';
 import { removeFeed } from '../utils/feedSlice';
@@ -7,29 +7,30 @@ import { BASE_URL } from '../utils/constants'
 
 const Card = ({ data }) => {
 
-  const { _id, firstName, lastName, age, about, photoUrl, gender, skills } = data;
-
+  const { _id, firstName, lastName, age, about, photoUrl, gender, skills, matchScore, matchReason } = data;
   const dispatch = useDispatch();
 
   const handleRequestSubmit = async (status, userId) => {
     try {
-
       const res = await axios.post(BASE_URL + "/request/send/" + status + "/" + userId, {}, { withCredentials: true });
-
       dispatch(removeFeed(userId));
-
-
     } catch (error) {
       console.error(error);
     }
   }
 
-  return (
+  // returns color  based on score
+  const getBadgeColor = () => {
+    if (matchScore >= 80) return "bg-purple-100 text-purple-700";
+    if (matchScore >= 60) return "bg-green-100 text-green-700";
+    if (matchScore >= 40) return "bg-yellow-100 text-yellow-700";
+    return "bg-gray-100 text-gray-500";
+  };
 
+  return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden max-w-sm mx-auto border border-gray-100">
 
       <div className="relative">
-
         <div className="aspect-[4/5] overflow-hidden">
           <img className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             src={photoUrl}
@@ -45,9 +46,19 @@ const Card = ({ data }) => {
             <h2 className="text-2xl font-bold text-gray-900 text-balance">{firstName}</h2>
             {age && <span className="text-lg font-medium text-gray-600">{age}</span>}
           </div>
-
           {gender && <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">{gender}</p>}
         </div>
+
+        {/* AI match score */}
+        {matchScore !== undefined && (
+          <div className={`rounded-xl px-3 py-2 ${getBadgeColor()}`}>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold uppercase">Match Score</span>
+              <span className="text-xl font-bold">{matchScore}%</span>
+            </div>
+            {matchReason && <p className="text-xs mt-1 opacity-80">{matchReason}</p>}
+          </div>
+        )}
 
         {about && <p className="text-gray-700 text-sm leading-relaxed text-pretty line-clamp-3">{about}</p>}
 
